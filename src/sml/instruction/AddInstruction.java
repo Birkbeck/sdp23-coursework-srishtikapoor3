@@ -79,10 +79,10 @@ public class AddInstruction extends Instruction {
 			m.getRegisters().set(result, value1 );
 		}
 
-		/*else if (OP_CODE.equals("jnz"))
+		else if (OP_CODE.equals("jnz"))
 		{
-			m.getRegisters().set(result, super.label );
-		}*/
+			m.getRegisters().set(result, super.label.hashCode());
+		}
 
 		return NORMAL_PROGRAM_COUNTER_UPDATE;
 	}
