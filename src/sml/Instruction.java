@@ -1,6 +1,8 @@
 package sml;
 
 // TODO: write a JavaDoc for the class
+// Instruction class holds the data of label operation code, first, second and third.
+//It is a static counter variable for global counting the arithmetic operation.
 
 /**
  * Represents an abstract instruction.
@@ -10,6 +12,8 @@ package sml;
 public abstract class Instruction {
 	protected final String label;
 	protected final String opcode;
+
+	protected int first, second, third;
 
 	/**
 	 * Constructor: an instruction with a label and an opcode
@@ -49,9 +53,15 @@ public abstract class Instruction {
 	}
 
 	// TODO: What does abstract in the declaration below mean?
-	//       (Write a short explanation.)
+	// equals () method predefined compared two strings and returned boolean true or false
+	// but this equal function overrides compared two objects.
 	@Override
 	public abstract String toString();
 
 	// TODO: Make sure that subclasses also implement equals and hashCode (needed in class Machine).
+	@Override
+	public abstract boolean equals (Object o );
+
+	@Override
+	public abstract int hashCode ();
 }
