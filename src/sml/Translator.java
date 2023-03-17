@@ -1,7 +1,5 @@
 package sml;
-
 import sml.instruction.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -20,7 +18,7 @@ import static sml.Registers.Register;
 public final class Translator {
 
     private final String fileName; // source file of SML code
-
+    
     // line contains the characters in the current line that's not been processed yet
     private String line = "";
 
@@ -41,11 +39,28 @@ public final class Translator {
             while (sc.hasNextLine()) {
                 line = sc.nextLine();
                 String label = getLabel();
-
                 Instruction instruction = getInstruction(label);
                 if (instruction != null) {
                     if (label != null)
-                        labels.addLabel(label, program.size());
+                    {  boolean found = false;
+                      
+                       for(Instruction p: program)  // Iterate the program list for check the label exist or not
+                       {
+                           if(label.equals(p.getLabel()))  // compare the existing and new label
+                           {
+                               found = true;
+                           }
+                       }
+                       if(found == false)
+                       {
+                           labels.addLabel(label, program.size());
+                           
+                       }
+                       else
+                       {
+                           System.out.println(label+"Exist in Instruction List");
+                       }
+                    }
                     program.add(instruction);
                 }
             }
@@ -66,14 +81,65 @@ public final class Translator {
             return null;
 
         String opcode = scan();
-        switch (opcode) {
-            case AddInstruction.OP_CODE -> {
+       
+        AddInstruction.OP_CODE = switch(opcode) 
+        {   case "add","sub","mul","div","mov","out","jnz" -> opcode; 
+             default -> "";
+         };
+        if(AddInstruction.OP_CODE.equals(""))
+            return null;
+        else
+        {
+                String r = scan();
+                String s = scan();               
+                return new AddInstruction(label, Register.valueOf(r), Register.valueOf(s));
+        }
+            /*
+                switch (opcode) {
+            case "add" -> {   // TODO:  compare the operation code is "add, sub,mul,div,mov,out,jnz"
+                AddInstruction.OP_CODE ="add";
+                String r = scan();
+                String s = scan();               
+                return new AddInstruction(label, Register.valueOf(r), Register.valueOf(s));
+            }
+            case "sub" -> {
+                AddInstruction.OP_CODE ="sub";
+                String r = scan();
+                String s = scan();
+                return new AddInstruction(label, Register.valueOf(r), Register.valueOf(s));
+            }
+            case "mul" -> {
+                AddInstruction.OP_CODE ="mul";
+                String r = scan();
+                String s = scan();
+                return new AddInstruction(label, Register.valueOf(r), Register.valueOf(s));
+            }
+            case "div" -> {
+                AddInstruction.OP_CODE ="div";
+                String r = scan();
+                String s = scan();
+                return new AddInstruction(label, Register.valueOf(r), Register.valueOf(s));
+            }
+            case "out" -> {
+                AddInstruction.OP_CODE ="out";
+                String r = scan();
+                String s = scan();
+                return new AddInstruction(label, Register.valueOf(r), Register.valueOf(s));
+            }
+            case "mov" -> {
+                AddInstruction.OP_CODE ="mov";
+                String r = scan();
+                String s = scan();
+                return new AddInstruction(label, Register.valueOf(r), Register.valueOf(s));
+            }
+            case "jnz" -> {
+                AddInstruction.OP_CODE ="jnz";
                 String r = scan();
                 String s = scan();
                 return new AddInstruction(label, Register.valueOf(r), Register.valueOf(s));
             }
 
-            // TODO: add code for all other types of instructions
+            
 
             // TODO: Then, replace the switch by using the Reflection API
 
@@ -84,7 +150,7 @@ public final class Translator {
                 System.out.println("Unknown instruction: " + opcode);
             }
         }
-        return null;
+        return null;*/
     }
 
 
