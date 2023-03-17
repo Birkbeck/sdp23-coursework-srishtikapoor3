@@ -6,7 +6,7 @@ import java.util.Objects;
 
 // TODO: write a JavaDoc for the class
 // The Label class store tha label name and its address in maps
-// Label class can be get the address of lable and set the label name
+// Label class can be get the address of label and set the label name
 
 /**
  *
@@ -58,7 +58,7 @@ public final class Labels {
 	}
 
 	// TODO: Implement equals and hashCode (needed in class Machine).
-                // equals () function comapre object of Machine class Object
+                // equals () function compare object of Machine class Object
                 @Override
                 public boolean equals(Object o)
                 {
