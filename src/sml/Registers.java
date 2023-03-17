@@ -4,8 +4,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 // TODO: write a JavaDoc for the class
-// Register class define the name of enamurate type constant name of register
-// It map the register name with register value 
+// Register class defines the name of enumerate type constant name of register
+// It maps the register name with register value 
 // It also get Register, set Register and clear the register value function 
 
 /**
