@@ -7,7 +7,7 @@ import sml.RegisterName;
 import java.util.Objects;
 
 // TODO: write a JavaDoc for the class
-// AddInstruction Class store the Lable, operataion code , source and result register
+// AddInstruction Class store the Label, operation code , source and result register
 // It also define the execute() function to perform each instruction in machine
 // It depend on the file content/instruction
 
