@@ -4,6 +4,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 // TODO: write a JavaDoc for the class
+// Register class define the name of enamurate type constant name of register
+// It map the register name with register value 
+// It also get Register, set Register and clear the register value function 
 
 /**
  *
@@ -15,11 +18,11 @@ public final class Registers {
     public enum Register implements RegisterName {
         EAX, EBX, ECX, EDX, ESP, EBP, ESI, EDI;
     }
-
+    
     public Registers() {
         clear(); // the class is final
     }
-
+    
     public void clear() {
         for (Register register : Register.values())
             registers.put(register, 0);
