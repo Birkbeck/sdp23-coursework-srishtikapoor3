@@ -20,6 +20,7 @@ public final class Machine {
 	private final List<Instruction> program = new ArrayList<>();
 
 	private final Registers registers;
+                
 
 	// The program counter; it contains the index (in program)
 	// of the next instruction to be executed.
@@ -27,6 +28,7 @@ public final class Machine {
 
 	public Machine(Registers registers) {
 		this.registers = registers;
+                                
 	}
 
 	/**
@@ -36,7 +38,8 @@ public final class Machine {
 	public void execute() {
 		programCounter = 0;
 		registers.clear();
-		while (programCounter < program.size()) {
+		while (programCounter < program.size()) 
+                               {
 			Instruction ins = program.get(programCounter);
 			int programCounterUpdate = ins.execute(this);
 			programCounter = (programCounterUpdate == NORMAL_PROGRAM_COUNTER_UPDATE)
@@ -44,7 +47,7 @@ public final class Machine {
 				: programCounterUpdate;
 		}
 	}
-
+                
 	public Labels getLabels() {
 		return this.labels;
 	}
@@ -75,9 +78,10 @@ public final class Machine {
 	@Override
 	public boolean equals(Object o) {
 		if (o instanceof Machine) {
-			// TODO:
+			// TODO: Other are object of Machine class using Explicit Conversion
+                                               // It compare the Lables, program, register and program counter also
 			Machine other = (Machine) o;
-			return Objects.equals(this.labels, other.labels)
+			return Objects.equals(this.labels, other.labels)   
 					&& Objects.equals(this.program, other.program)
 					&& Objects.equals(this.registers, other.registers)
 					&& this.programCounter == other.programCounter;
